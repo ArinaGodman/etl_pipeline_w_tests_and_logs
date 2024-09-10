@@ -23,9 +23,11 @@ db_config = {
     
 directory = "data"
 
-logging.basicConfig(filename='etl_pipeline_errors.log', 
-                    level=logging.ERROR, 
-                    format='%(asctime)s %(levelname)s %(message)s')
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s',
+                    handlers=[
+                        logging.FileHandler('etl_pipeline.log'),  # Log to a file
+                    ])
 
 def etl_pipeline_sales(directory, db_config):
     """

@@ -9,6 +9,11 @@ def load_data_sales(conn, data):
         conn (psycopg2.connection): Active connection to the PostgreSQL database.
         data (pd.DataFrame): DataFrame containing sales data to be loaded into the database.
     """
+
+    logging.info(f"Starting to load data...")
+
+    success_count = 0
+
     with conn.cursor() as cur:
         for idx, row in data.iterrows():
             try:
@@ -36,4 +41,7 @@ def load_data_sales(conn, data):
                 conn.rollback()  # Rollback transaction for this record
             else:
                 conn.commit()  # Commit transaction after each successful insert
+                success_count += 1  
+
+        logging.info(f"Data loaded successfully into 'sales' table. Total rows inserted: {success_count}")
         print("Data loaded successfully into 'sales' table.")
