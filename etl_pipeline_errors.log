@@ -1,0 +1,21 @@
+2024-09-10 15:09:18,984 Unique key violation while loading sales data: FEL:  duplicerat nyckelvärde bryter mot unik-villkor "sales_pkey"
+DETAIL:  Nyckeln (ecommerce_transaction_id)=(81996755) existerar redan.
+
+2024-09-10 15:14:54,357 Error while loading sales data record event_date: 'psycopg2.extensions.cursor' object has no attribute 'cursor'
+2024-09-10 15:14:54,357 Error while loading sales data record ecommerce_transaction_id: 'psycopg2.extensions.cursor' object has no attribute 'cursor'
+2024-09-10 15:14:54,357 Error while loading sales data record user_pseudo_id: 'psycopg2.extensions.cursor' object has no attribute 'cursor'
+2024-09-10 15:14:54,378 Error while loading sales data record event_value_in_usd: 'psycopg2.extensions.cursor' object has no attribute 'cursor'
+2024-09-10 15:14:54,378 Error while loading sales data record item_quantity: 'psycopg2.extensions.cursor' object has no attribute 'cursor'
+2024-09-10 15:14:54,378 Error while loading sales data record total_sales: 'psycopg2.extensions.cursor' object has no attribute 'cursor'
+2024-09-10 15:14:54,378 Error while loading sales data record total_sales_in_usd: 'psycopg2.extensions.cursor' object has no attribute 'cursor'
+2024-09-10 15:14:54,424 Error while loading sales detail data record event_date: 'psycopg2.extensions.cursor' object has no attribute 'cursor'
+2024-09-10 15:14:54,424 Error while loading sales detail data record event_value_in_usd: 'psycopg2.extensions.cursor' object has no attribute 'cursor'
+2024-09-10 15:14:54,424 Error while loading sales detail data record user_id: 'psycopg2.extensions.cursor' object has no attribute 'cursor'
+2024-09-10 15:14:54,424 Error while loading sales detail data record user_pseudo_id: 'psycopg2.extensions.cursor' object has no attribute 'cursor'
+2024-09-10 15:14:54,424 Error while loading sales detail data record ecommerce_transaction_id: 'psycopg2.extensions.cursor' object has no attribute 'cursor'
+2024-09-10 15:14:54,424 Error while loading sales detail data record item_id: 'psycopg2.extensions.cursor' object has no attribute 'cursor'
+2024-09-10 15:14:54,424 Error while loading sales detail data record item_quantity: 'psycopg2.extensions.cursor' object has no attribute 'cursor'
+2024-09-10 15:14:54,424 Error while loading sales detail data record item_price: 'psycopg2.extensions.cursor' object has no attribute 'cursor'
+2024-09-10 15:14:54,424 Error while loading sales detail data record item_price_in_usd: 'psycopg2.extensions.cursor' object has no attribute 'cursor'
+2024-09-10 15:14:54,424 Error while loading sales detail data record total_sales: 'psycopg2.extensions.cursor' object has no attribute 'cursor'
+2024-09-10 15:14:54,424 Error while loading sales detail data record total_sales_in_usd: 'psycopg2.extensions.cursor' object has no attribute 'cursor'

@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import json
 import os
+import logging
 
 import psycopg2
 from dotenv import load_dotenv
@@ -23,6 +24,10 @@ db_config = {
     
 directory = "data"
 
+logging.basicConfig(filename='etl_pipeline_errors.log', 
+                    level=logging.ERROR, 
+                    format='%(asctime)s %(levelname)s %(message)s')
+
 def etl_pipeline_sales(directory, db_config):
     """
     ETL pipeline for processing sales data.
@@ -36,21 +41,29 @@ def etl_pipeline_sales(directory, db_config):
         data = extract_data_sales(directory)
 
         # Transform data
-        transformed_data_sales, transformed_data_sales_detail = transform_data_sales(data)
+        transformed_data_sales = transform_data_sales(data)
 
         # Load sales data
         with psycopg2.connect(**db_config) as conn:
-            load_data_sales(conn, transformed_data_sales)
-
-        # Load sales detail data
-        with psycopg2.connect(**db_config) as conn:
-            load_data_sales_detail(conn, transformed_data_sales_detail)
+            with conn.cursor() as cur:
+                for record in transformed_data_sales:
+                    try:
+                        load_data_sales(cur, [record])  # Assuming load_data_sales expects a list of records
+                    except psycopg2.errors.UniqueViolation as e:
+                        logging.error(f"Unique key violation for sales data record {record}: {e}")
+                        conn.rollback()  # Rollback transaction for this record
+                    except Exception as e:
+                        logging.error(f"Error while loading sales data record {record}: {e}")
+                        conn.rollback()  # Rollback transaction for this record
+                    else:
+                        conn.commit()  # Commit transaction if no errors
 
     except Exception as e:
-        print(f"An error occurred in the ETL pipeline: {e}")
+        logging.error(f"An error occurred in the ETL pipeline: {e}")
+
 
 if __name__ == "__main__":
-    etl_pipeline_sales()
+    etl_pipeline_sales(directory, db_config)
 
 with psycopg2.connect(**db_config) as conn:
     with conn.cursor() as cur:
@@ -58,10 +71,5 @@ with psycopg2.connect(**db_config) as conn:
         cur.execute('SELECT COUNT(*) AS total_records FROM sales;')
         total_sales_records = cur.fetchone()[0]
 
-        # Query total records in 'sales_detail' table
-        cur.execute('SELECT COUNT(*) AS total_records FROM sales_detail;')
-        total_sales_detail_records = cur.fetchone()[0]
-
         # Print results
         print(f"Total number of records in 'sales' table: {total_sales_records}")
-        print(f"Total number of records in 'sales_detail' table: {total_sales_detail_records}")

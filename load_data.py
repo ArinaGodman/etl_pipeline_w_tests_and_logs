@@ -32,33 +32,3 @@ def load_data_sales(conn, data):
 
         conn.commit()
         print("Data loaded successfully into 'sales' table.")
-
-def load_data_sales_detail(conn, data):
-    """
-    Load sales_detail data into the PostgreSQL database.
-
-    Args:
-        conn (psycopg2.connection): Connection object to the PostgreSQL database.
-        data (pandas.DataFrame): Transformed sales detail data.
-    """
-    with conn.cursor() as cur:
-
-        insert_query = '''
-        INSERT INTO sales_detail (
-            ecommerce_transaction_id,
-            item_id,
-            item_quantity,
-            item_price
-        ) VALUES (%s, %s, %s, %s)
-        '''
-
-        for idx, row in data.iterrows():
-            cur.execute(insert_query, (
-                row['ecommerce_transaction_id'],
-                row['item_id'],
-                row['item_quantity'],
-                row['item_price']
-            ))
-
-        conn.commit()
-        print("Data loaded successfully into 'sales_detail' table.")
