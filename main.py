@@ -6,6 +6,12 @@ import os
 import psycopg2
 from dotenv import load_dotenv
 
+from extract_data import extract_data_sales
+from transform_data import transform_data_sales
+from load_data import load_data_sales 
+from load_data import load_data_sales_detail
+
+
 load_dotenv()
 
 db_config = {
@@ -43,7 +49,8 @@ def etl_pipeline_sales(directory, db_config):
     except Exception as e:
         print(f"An error occurred in the ETL pipeline: {e}")
 
-etl_pipeline_sales(directory, db_config)
+if __name__ == "__main__":
+    etl_pipeline_sales()
 
 with psycopg2.connect(**db_config) as conn:
     with conn.cursor() as cur:
