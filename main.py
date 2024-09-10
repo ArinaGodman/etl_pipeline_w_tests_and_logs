@@ -10,7 +10,6 @@ from dotenv import load_dotenv
 from extract_data import extract_data_sales
 from transform_data import transform_data_sales
 from load_data import load_data_sales 
-from load_data import load_data_sales_detail
 
 
 load_dotenv()
@@ -45,18 +44,7 @@ def etl_pipeline_sales(directory, db_config):
 
         # Load sales data
         with psycopg2.connect(**db_config) as conn:
-            with conn.cursor() as cur:
-                for record in transformed_data_sales:
-                    try:
-                        load_data_sales(cur, [record])  # Assuming load_data_sales expects a list of records
-                    except psycopg2.errors.UniqueViolation as e:
-                        logging.error(f"Unique key violation for sales data record {record}: {e}")
-                        conn.rollback()  # Rollback transaction for this record
-                    except Exception as e:
-                        logging.error(f"Error while loading sales data record {record}: {e}")
-                        conn.rollback()  # Rollback transaction for this record
-                    else:
-                        conn.commit()  # Commit transaction if no errors
+            load_data_sales(conn, transformed_data_sales)
 
     except Exception as e:
         logging.error(f"An error occurred in the ETL pipeline: {e}")
