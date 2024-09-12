@@ -75,7 +75,7 @@ Follow these steps to set up and run the ETL pipeline:
 1. **Run SQL Scripts to Create Table sales**
 
    Execute the SQL script in order to create a table: 
-
+```plaintext
    CREATE TABLE IF NOT EXISTS sales (
     ecommerce_transaction_id VARCHAR(255) PRIMARY KEY,
     event_date DATE,
@@ -86,6 +86,7 @@ Follow these steps to set up and run the ETL pipeline:
     total_sales_in_usd NUMERIC(10,2),
     FOREIGN KEY (event_date) REFERENCES dates(date)
 );
+```
 
 2. **Execute the tests**
    To ensure that the code works correctly write in the terminal "pytest" and press Enter. Check that the tests are performed. Your expected output is a faluire at `test_load_data.py` that is caused by violation of unique-key constraint and no faluires at other tests. 
