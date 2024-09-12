@@ -1,9 +1,0 @@
-INFO     numexpr.utils:utils.py:148 Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
-INFO     numexpr.utils:utils.py:160 NumExpr defaulting to 8 threads.
-INFO     root:extract_data.py:19 Starting to extract data from directory: temp_test_dir
-INFO     root:extract_data.py:24 Processing file: temp_test_dir\test_data.json
-INFO     root:extract_data.py:56 Successfully processed file: temp_test_dir\test_data.json
-INFO     root:extract_data.py:68 Data extraction completed successfully. Total records extracted: 1
-INFO     root:transform_data.py:16 Starting data transformation.
-INFO     root:transform_data.py:20 Initial DataFrame size: 2 records
-INFO     root:transform_data.py:40 Data transformation completed. Initial size: 2 records, Final size: 2 records

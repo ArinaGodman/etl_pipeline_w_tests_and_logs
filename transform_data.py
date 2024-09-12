@@ -33,7 +33,11 @@ def transform_data_sales(df):
         df['total_sales'] = df['item_quantity'] * df['item_price']
         df['total_sales_in_usd'] = df['item_quantity'] * df['item_price_in_usd']
 
-        df = df.dropna(subset=['item_id'])
+        df_summary = df.groupby(['event_date', 'ecommerce_transaction_id', 'user_pseudo_id','event_value_in_usd']).agg({
+        'item_quantity': 'sum',
+        'total_sales': 'sum',
+        'total_sales_in_usd': 'sum'
+        }).reset_index()
         
         # Record the size of the DataFrame after transformation
         final_size = len(df)
@@ -43,4 +47,4 @@ def transform_data_sales(df):
         logging.error("Error during data transformation: %s", e)
         raise
     
-    return df
+    return df_summary

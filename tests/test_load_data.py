@@ -11,7 +11,6 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 
 from load_data import load_data_sales
 
-# Define test database configuration
 TEST_DB_CONFIG = {
     'dbname': 'test_db',
     'user': 'test_user',
