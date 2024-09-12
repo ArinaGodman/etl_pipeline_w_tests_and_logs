@@ -44,8 +44,8 @@ etl_pipeline_w_tests_and_logs/
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/etl_converstionista.git
-    cd etl_converstionista
+    git clone https://github.com/ArinaGodman/etl_pipeline_w_tests_and_logs.git
+    cd etl_pipeline_w_tests_and_logs
     ```
 
 2. **Create and activate a virtual environment:**
