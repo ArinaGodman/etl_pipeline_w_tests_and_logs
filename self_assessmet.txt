@@ -1,0 +1,22 @@
+ • Utmaningar du haft under arbetet samt hur du hanterat dem.
+
+För första gången behövde jag bygga en ETL-pipeline med denna data i somras då jag fick det som test-projekt för min praktik. 
+Den största utmanningen var att förstå vilken struktur man behöver ha och vad som egentligen förväntas av mig. 
+Det var mycket strul med GitHub, enviroments och PortgreDB som jag har aldrig jobbat förut med. 
+Detta hanterade jag med hjälp av vänner inom området, python dokumentation och, sist men inte minst, ChatGPT.
+På 3 dagar var jag klar med min projekt som också inkluderade en del data-modelering och analys, och presenterade det för min **välsigt snart** chef. Så, jag fick praktiken som ni förstår :)
+
+Denna gång kunde jag fokusera mer på error-handling, logging och automated testing. Men jag fick strul med Postgre då jag glömde hur man öppnar det :D 
+Så jag laddade ner det igen men sedan kom jag på hur man gör det (man söker "pgAdmin" i Windows) och srulen var över. 
+
+Jag vill lägga till att jag inte tycker att ChatGPT är skadlig för studerade eftersom den är fortfarande ganska dum och man behöver
+tänka till ändå för att lösa problem, men det sparar mycket tid på att förstå varför ens kod inte funkar och hur dessa problem kan lösas.
+
+
+ • Vilket betyg du anser att du skall ha och varför.
+ VG. För att jag har uppnått samtliga mål för kursen och följde PEP8.
+
+
+ • Något du vill lyfta fram till Linus och Antonio?
+
+ Jag tycker att denna kurs skulle passa bäst mitt i utbildningen. 
