@@ -8,41 +8,36 @@ This project contains an ETL (Extract, Transform, Load) pipeline for processing 
 - [Project Structure](#project-structure)
 - [Setup and Installation](#setup-and-installation)
 - [Usage](#usage)
-- [Database Schema](database-schema)
-- [Visuals](#visuals)
-- [Potential Database Schema](#potential-database-schema)
 
 ## Overview
 
-The ETL pipeline extracts sales data from JSON files, transforms it into a structured format, and loads it into a PostgreSQL database. This process creates both summary and detailed views of sales, facilitating analysis and reporting. The ETL pipeline is automated with the help of Windows Task Scheduler.
+The ETL pipeline extracts sales data from JSON files, transforms it into a structured format, and loads it into a PostgreSQL database. This process creates summary views of sales, facilitating analysis and reporting. The ETL pipeline is automated with the help of Windows Task Scheduler.
 
-In addition to the sales and sales_detail tables, products and dates tables were created and populated from the JSON files.
+In addition to the sales and sales_detail tables, products and dates can be created and populated from the JSON files but i considered it unneccessary in this project.
 
-In the db_design_w_queries directory, you can find a .png file illustrating the potential database structure with more time and information. Queries for creating these tables are also provided in the same directory.
+The logging was used in the project to have an easy overview over scheduled extraction of data every day. 
 
+Automated testing was implemented as well as a part of the project. Outrup from automated testing shows in the terminal. 
 
 ## Project Structure
 
 ```plaintext
-conversionista_etl/
+etl_pipeline_w_tests_and_logs/
 ├── data/                                  # Directory containing JSON data files
-├── possible_db_design/                    # Directory containing possible db-design and queries to create tables
-│   ├── create_tables.sql                  # SQL script to create the necessary tables accorging to design
-│   └── db_diagram.png                     # Possible database schema diagram
-├── current_db_design/                     # Directory containing queries to create tables for this project and a query for populating dates-table
-│   ├── current_db_design.png              # Current database schema diagram
-│   ├── create_table_queries.sql           # SQL script to create the necessary tables for just this project
-│   └── populating_dates_table_query.sql   # Query for populating dates-table in this project
-├── visuals/                               # Directory containing visuals and script for them
-│   ├── most_sold_categories.png           # Pie chart for most sold categories
-│   ├── sales_per_date.png                 # Bar chart sales-per-date
-│   └── visuals.py                         # Script for creating visuals
-├── etl_sales_pipeline.py                  # Main ETL script
-├── populating_products.py                 # Script for populating products-table from json-files
-├── visual.py                              # Script for creating a few visuals of sales-data
+├── tests/                                 # Directory containing automated test-scripts
+│   ├── test_extract_data.py               # Python script for automated testing of extarct_data module
+│   ├── test_transform_data.py             # Python script for automated testing of transform_data module
+│   └── test_load_data.py                  # Python script for automated testing of load_data module
+├── main.py                                # Main ETL script
+├── extract_data.py                        # Script for extracting data from JSON-files
+├── transform_data.py                      # Script for transforming data 
+├── load_data.py                           # Script for loading data in Postgre database
 ├── .env                                   # Environment variables for database configuration
 ├── README.md                              # Project documentation
 ├── requirements.txt                       # Required packages
+├── run_etl.bat                            # .bat file for scheduling ETL
+├── etl_pipeline.log                       # Log-file for ETL runs
+├── self_assessment.txt                     # Self-Assessment file
 ```
 
 ## Setup and Installation
@@ -77,45 +72,33 @@ conversionista_etl/
 
 Follow these steps to set up and run the ETL pipeline:
 
-1. **Run SQL Scripts to Create Tables**
+1. **Run SQL Scripts to Create Table sales**
 
-   Execute the SQL scripts located in the `sql_queries/` directory to create the necessary tables in your PostgreSQL database. Ensure you have connected to your database before running these scripts.
+   Execute the SQL script in order to create a table: 
 
-   `current_db_design/create_tables.sql`
+   CREATE TABLE IF NOT EXISTS sales (
+    ecommerce_transaction_id VARCHAR(255) PRIMARY KEY,
+    event_date DATE,
+    event_value_in_usd NUMERIC,
+    user_pseudo_id VARCHAR(255),
+    item_quantity NUMERIC,
+    total_sales NUMERIC(10,2),
+    total_sales_in_usd NUMERIC(10,2),
+    FOREIGN KEY (event_date) REFERENCES dates(date)
+);
 
-2. **Run SQL Script for Populating Dates Table**
+2. **Execute the tests**
+   To ensure that the code works correctly write in the terminal "pytest" and press Enter. Check that the tests are performed. Your expected output is a faluire at `test_load_data.py` that is caused by violation of unique-key constraint and no faluires at other tests. 
 
-   Run the SQL script to populate the dates table with required data.
+3. **Execute the main ETL pipeline script main.py**
+   Run python main.py to extract sales data from JSON files, transform it into structured formats, and load it into the PostgreSQL database. Ensure your JSON data files are placed in the data/ directory before running the script.
+
+   `main.py`
+
+3. **Check the etl_pipeline.log to ensure that the script ran correctly**
+
+   `etl_pipeline.log`
+
+4. **Optional** 
    
-   `current_db_design/populating_dates_table_query.sql`
-
-3. **Run Python Script for Populating Products Table**
-
-   Execute the Python script `populating_products.py` located in the root directory to populate the products table from JSON data files in the data/ directory.
-
-   `python populating_products.py`
-
-
-4. **Execute the main ETL pipeline script etl_sales_pipeline.py**
-   Run python etl_sales_pipeline.py to extract sales data from JSON files, transform it into structured formats, and load it into the PostgreSQL database. Ensure your JSON data files are placed in the data/ directory before running the script.
-
-   `python etl_sales_pipeline.py`
-
-## Database Schema
-
-Current database schema: 
-
-![Current Database Structure](current_db_design/current_db_design.png)
-
-## Visuals
-
-![Sales per date](visuals/sales_per_date.png)
-
-![Most sold categories](visuals/most_sold_categories.png)
-
-## Potential Database Schema
-
-Database structure with more time and data could look like this:
-
-![Possible Database Structure](possible_db_design/db_design.png)
-
+   Run `main.py` one more time and check `etl_pipeline.log` to ensure that the fail of loading the same data occured. 
