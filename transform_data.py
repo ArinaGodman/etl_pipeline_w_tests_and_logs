@@ -40,7 +40,7 @@ def transform_data_sales(df):
         }).reset_index()
         
         # Record the size of the DataFrame after transformation
-        final_size = len(df)
+        final_size = len(df_summary)
         logging.info("Data transformation completed. Initial size: %d records, Final size: %d records", initial_size, final_size)
         
     except Exception as e:

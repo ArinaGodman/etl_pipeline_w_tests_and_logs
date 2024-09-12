@@ -1,0 +1,21 @@
+2024-09-12 12:45:58,590 - INFO - Starting to extract data from directory: data
+2024-09-12 12:45:58,590 - INFO - Processing file: data\20240601.json
+2024-09-12 12:45:58,700 - INFO - Successfully processed file: data\20240601.json
+2024-09-12 12:45:58,700 - INFO - Processing file: data\20240602.json
+2024-09-12 12:45:58,836 - INFO - Successfully processed file: data\20240602.json
+2024-09-12 12:45:58,837 - INFO - Processing file: data\20240603.json
+2024-09-12 12:45:58,981 - INFO - Successfully processed file: data\20240603.json
+2024-09-12 12:45:58,981 - INFO - Processing file: data\20240604.json
+2024-09-12 12:45:59,092 - INFO - Successfully processed file: data\20240604.json
+2024-09-12 12:45:59,092 - INFO - Processing file: data\20240605.json
+2024-09-12 12:45:59,245 - INFO - Successfully processed file: data\20240605.json
+2024-09-12 12:45:59,245 - INFO - Processing file: data\20240606.json
+2024-09-12 12:45:59,350 - INFO - Successfully processed file: data\20240606.json
+2024-09-12 12:45:59,350 - INFO - Processing file: data\20240607.json
+2024-09-12 12:45:59,483 - INFO - Successfully processed file: data\20240607.json
+2024-09-12 12:45:59,483 - INFO - Data extraction completed successfully. Total records extracted: 2019
+2024-09-12 12:45:59,495 - INFO - Starting data transformation.
+2024-09-12 12:45:59,495 - INFO - Initial DataFrame size: 2019 records
+2024-09-12 12:45:59,505 - INFO - Data transformation completed. Initial size: 2019 records, Final size: 1400 records
+2024-09-12 12:45:59,560 - INFO - Starting to load data...
+2024-09-12 12:46:00,233 - INFO - Data loaded successfully into 'sales' table. Total rows inserted: 1400
