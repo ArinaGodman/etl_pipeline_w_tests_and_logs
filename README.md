@@ -61,7 +61,7 @@ etl_pipeline_w_tests_and_logs/
     ```
 
 4. **Configure the database connection:**
-    - Create an `.env` file in the root directory and add your PostgreSQL database configuration. I hid this file in security purposes.
+    - Create an `.env` file in the root directory and add your PostgreSQL database configuration. I hid this file for security purposes.
     ```
     PG_HOST=your_host
     PG_DATABASE=your_database
