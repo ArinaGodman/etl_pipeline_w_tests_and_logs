@@ -37,7 +37,8 @@ etl_pipeline_w_tests_and_logs/
 ├── requirements.txt                       # Required packages
 ├── run_etl.bat                            # .bat file for scheduling ETL
 ├── etl_pipeline.log                       # Log-file for ETL runs
-├── self_assessment.txt                     # Self-Assessment file
+├── self_assessment.txt                    # Self-Assessment file
+├── Task_scheduler.jpeg                    # Print screen of a task scheduler
 ```
 
 ## Setup and Installation
@@ -103,3 +104,7 @@ Follow these steps to set up and run the ETL pipeline:
 4. **Optional** 
    
    Run `main.py` one more time and check `etl_pipeline.log` to ensure that the fail of loading the same data occured. 
+
+   Create a Windows Task Scheduler to run your pipeline every day/week/month if needed.
+
+   ![Task Scheduler](Task_scheduler.jpg)
