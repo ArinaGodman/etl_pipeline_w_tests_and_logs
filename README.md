@@ -32,7 +32,7 @@ etl_pipeline_w_tests_and_logs/
 ├── extract_data.py                        # Script for extracting data from JSON-files
 ├── transform_data.py                      # Script for transforming data 
 ├── load_data.py                           # Script for loading data in Postgre database
-├── .env                                   # Environment variables for database configuration
+├── .env                                   # Environment variables for database configuration (HIDDEN)
 ├── README.md                              # Project documentation
 ├── requirements.txt                       # Required packages
 ├── run_etl.bat                            # .bat file for scheduling ETL
