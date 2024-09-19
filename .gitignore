@@ -6,4 +6,4 @@ __pycache__/
 .vscode/
 
 # Ignore a file with database credentials
-.env 
+
